@@ -1,4 +1,5 @@
 <a href="https://zenhub.io"><img src="https://raw.githubusercontent.com/ZenHubIO/support/master/zenhub-badge.png"></a>
+<a href="https://www.docker.com"><img src="https://www.docker.com/sites/all/themes/docker/assets/images/logo.png"></a>
 
 # docker-for-moodle
 
