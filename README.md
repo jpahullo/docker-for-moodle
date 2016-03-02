@@ -18,6 +18,7 @@ Run these commands in a terminal to have a Moodle 3.0+ release up and running:
 ```
 $ cd
 $ git clone git@github.com:jpahullo/docker-for-moodle.git
+$ cd docker-for-moodle
 $ export MOODLE_VERSION=30 && export MOODLE_URL=http://localhost:8080 && docker-compose up -d
 ```
 
@@ -41,6 +42,7 @@ Follow this steps to build a dockerized Moodle 3.0 weekly release. Update the Mo
 ```
 $ cd
 $ git clone git@github.com:jpahullo/docker-for-moodle.git
+$ cd docker-for-moodle
 $ export MOODLE_VERSION=30 && export MOODLE_URL=http://localhost:8080 && docker-compose build
 ```
 
