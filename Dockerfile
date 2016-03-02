@@ -23,7 +23,8 @@ RUN apt-get update && \
     rm -rf /var/www/html/* && \
     git clone -b MOODLE_${MOODLE_VERSION}_STABLE https://github.com/moodle/moodle.git /var/www/html/ && \
     mkdir -p ${MOODLE_DATA} && \
-    chown -R www-data:www-data /var/www/html ${MOODLE_DATA}
+    chown -R www-data:www-data /var/www/html && \
+    chown -R www-data:www-data ${MOODLE_DATA}
 
 #ADD config.php /var/www/html/config.php
 
