@@ -4,11 +4,13 @@ services:
 
   mysql_data:
     image: busybox
+    container_name: mysqldata-moodle-$MOODLE_VERSION
     volumes:
      - /var/lib/mysql
 
   mysql:
     image: mysql/mysql-server
+    container_name: mysql-moodle-$MOODLE_VERSION
     volumes_from:
      - mysql_data
     environment:

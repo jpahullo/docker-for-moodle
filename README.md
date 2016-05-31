@@ -11,8 +11,41 @@ Easy to use, plug &amp; play, docker and docker compose to run Moodle at once in
 1. Having [Docker installed](https://docs.docker.com/engine/installation/)
 1. Having [docker-compose installed](https://docs.docker.com/compose/install/)
 
+# Running for local development
+
+The idea is to have out of the docker image, mounted as volumes, both MOODLEHOME as well as MOODLEDATA, inside the
+`for-local-development/` directory. The goal is to have it locally to help in development and integration with
+new plugins.
+
+To start it at once, simply run:
+
+```
+cd for-local-development
+./start_moodle.sh
+```
+
+If it is the first time `start_moodle.sh` is executed, this will download docker image and Moodle source code.
+Then, it will start the a Moodle web server at http://localhost and a PhpMyAdmin manager at http://localhost:8080.
+
+To stop it, just run:
+
+```
+cd for-local-development
+./stop_moodle.sh
+```
+
+Whenever you need to make a **hard** clean (removing images and code) just run:
+
+```
+cd for-local-development
+./purge.sh
+```
+
+If you purge it all, then you will download docker images and Moodle code right again (implicitly with the `start_moodle.sh` script).
 
 # Running it at once
+
+TODO: Section to revisit.
 
 Run these commands in a terminal to have a Moodle 3.0+ release up and running:
 

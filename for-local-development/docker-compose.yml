@@ -23,6 +23,16 @@ services:
     ports:
      - "${MYSQL_PORT}:3306"
 
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin-for-moodle-$MOODLE_VERSION
+    depends_on:
+     - mysql
+    links:
+     - mysql:db
+    ports:
+     - 8080:80
+
   moodle:
     build:
       context: .
@@ -41,3 +51,5 @@ services:
      - "${MOODLE_PORT}:80"
     environment:
      - MOODLE_URL=$MOODLE_URL
+    ports:
+     - 80:80

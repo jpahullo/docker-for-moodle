@@ -1,13 +1,17 @@
 # Dockerfile for moodle instance. more dockerish version of https://github.com/jda/docker-moodle
 FROM ubuntu:14.04
 MAINTAINER Jordi Pujol-Ahulló <jpahullo@gmail.com>
-ARG MOODLE_VERSION=28
+
+# Default values appear here.
+# You can override them using "docker run" option like "-e MOODLE_VERSION=28"
+ARG MOODLE_VERSION=30
 ARG MOODLE_DATA=/var/www/moodledata
 
 RUN echo "Moodle version:       "${MOODLE_VERSION}
 RUN echo "Moodle data directory:"${MOODLE_DATA}
 
 VOLUME ["${MOODLE_DATA}"]
+VOLUME ["/var/www/html"]
 EXPOSE 80 443
 
 # Let the container know that there is no tty
@@ -25,8 +29,6 @@ RUN apt-get update && \
     mkdir -p ${MOODLE_DATA} && \
     chown -R www-data:www-data /var/www/html && \
     chown -R www-data:www-data ${MOODLE_DATA}
-
-#ADD config.php /var/www/html/config.php
 
 # Enable SSL, moodle requires it
 # if using proxy, don't need actually secure connection

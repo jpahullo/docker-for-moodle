@@ -18,9 +18,21 @@ fi
 
 if [ -z ${MOODLE_VERSION} ]
 then
-  echo "Using Moodle version: 30"
   MOODLE_VERSION=30
 fi
+echo "Using Moodle version: ${MOODLE_VERSION}"
+
+if [ -z ${MOODLE_PORT} ]
+then
+  MOODLE_PORT=80
+fi
+echo "Using HTTP port: ${MOODLE_PORT}"
+
+if [ -z ${MYSQL_PORT} ]
+then
+  MYSQL_PORT=3306
+fi
+echo "Using MySQL port: ${MYSQL_PORT}"
 
 moodlewww=moodle-${MOODLE_VERSION}
 moodledata=moodle-${MOODLE_VERSION}-data
@@ -39,12 +51,16 @@ export MOODLE_VERSION=${MOODLE_VERSION} && \
 export MOODLE_URL=${MOODLE_URL} && \
 export MOODLE_DATA=`pwd`/$moodledata && \
 export MOODLE_WWW=`pwd`/$moodlewww && \
+export MOODLE_PORT=${MOODLE_PORT} && \
+export MYSQL_PORT=${MYSQL_PORT} && \
 docker-compose up -d
+docker start apache-for-moodle-${MOODLE_VERSION}
 
 echo ""
 echo ""
 echo "Reminder for Moodle settings:"
 echo "  URL: ${MOODLE_URL}"
+echo "  HTTP port: ${MOODLE_PORT}"
 echo "  Moodle WWW: /var/www/html"
 echo "  Moodle Data: /var/www/moodledata"
 echo ""
@@ -54,6 +70,6 @@ echo "   Server: The host from your ${MOODLE_URL}"
 echo "   Name: moodle"
 echo "   Username: moodle"
 echo "   Password: moodle"
-echo "   Port: 3306"
+echo "   Port: ${MYSQL_PORT}"
 echo ""
 echo " Enjoy!"
